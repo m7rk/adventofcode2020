@@ -1,0 +1,1 @@
+puts File.readlines("1.txt").map(&:to_i).permutation(2).find{|n| n.sum == 2020}.reduce(:*)
