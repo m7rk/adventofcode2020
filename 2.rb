@@ -1,2 +1,2 @@
-puts File.readlines("2.txt").map{|s| s.split(" ")}.count{|c| c[2].count(c[1][0]).between?(*c[0].split("-").map(&:to_i))}
+puts File.readlines("2.txt").map{|s| s.split(" ")}.count{|c| 1 == c[0].split("-").count{ |n| c[1][0] == c[2][n.to_i-1]}}
 
