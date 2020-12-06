@@ -1,0 +1,1 @@
+puts File.read("6.txt").split("\n\n").map{|d| (d.chars.uniq-["\n"]).count}.sum
