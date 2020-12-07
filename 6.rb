@@ -1,1 +1,1 @@
-puts File.read("6.txt").split("\n\n").map{|d| (d.chars.uniq-["\n"]).count}.sum
+puts File.read("6.txt").split("\n\n").map{|d| d.split("\n").map(&:chars).reduce(:&).count}.sum
