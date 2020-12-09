@@ -1,0 +1,1 @@
+puts ([File.readlines("9.txt").map(&:to_i)] * File.readlines("9.txt").count).each_with_index.map{|e,i| (e[i-26..i-1].combination(2).map(&:sum).include? e[i]) ? false : e[i]}.uniq[27]
