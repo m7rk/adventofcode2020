@@ -8,15 +8,12 @@ def to_directed_graph(d)
   out
 end
 
-puts to_directed_graph(d)
-
-
-
 def paths_from_adapter(d, i, cache)
   return cache[i] if cache[i]
   return 1 if d[i].count == 0
 
   sum = 0
+  
   count = d[i].each do |v|
     val = 0
     if (cache[v]) 
