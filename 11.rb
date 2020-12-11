@@ -1,14 +1,23 @@
+def raycast(d,x,y,dx,dy)
+  step = 1
+  while((x+step*dx).between?(0,d.count-1) && (y+step*dy).between?(0,d[0].count-1))
+    return d[x+step*dx][y+step*dy] if d[x+step*dx][y+step*dy] != "."
+    step += 1
+  end
+  return "."
+end
+
 def newState(d,x,y)
   adj = []
   (-1..1).each do |dx|
     (-1..1).each do |dy|
-      if((x+dx).between?(0,d.count-1) && (y+dy).between?(0,d[0].count-1) && !(dx == 0 && dy == 0))
-        adj << d[x+dx][y+dy]
+      if !(dx == 0 && dy == 0)
+        adj << raycast(d,x,y,dx,dy)
       end
     end
   end
   return "#" if d[x][y] == "L" && adj.count("#") == 0
-  return "L" if d[x][y] == "#" && adj.count("#") >= 4
+  return "L" if d[x][y] == "#" && adj.count("#") >= 5
   return d[x][y]
 end
 
