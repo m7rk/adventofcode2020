@@ -1,5 +1,19 @@
-targ = File.readlines("13.txt")[0].to_i
 data = File.readlines("13.txt")[1].split(",").map(&:to_i)
-tidx =  data.map{|d| d > 0 ? (d-(targ % d)) : targ}.each_with_index.min
-id = data[tidx[1]]
-puts tidx[0] * id
+
+data = data.slice_when { |i, j| i != 0 }.to_a
+parsed = data.map{|d| [d[-1],d.count(0)]}
+puts parsed.inspect
+
+def findnext(i, inc, targ)
+    return i if ((i + 1 + targ[1]) % targ[0]) == 0
+    return findnext(i + inc, inc, targ)
+end
+
+i = parsed[0][1]
+inc = parsed[0][0]
+
+parsed[1..-1].each do |p|
+  i = findnext(i, inc, p)
+  inc *= p[0]
+end
+puts i
